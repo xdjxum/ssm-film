@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contex="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+https://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ https://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+    <contex:component-scan base-package="com.xud.controller,com.xud.dao,com.xud.service,com.xud.domain"></contex:component-scan>
+<!--        引入外部文件-->
+    <contex:property-placeholder location="classpath:dataSource.properties"></contex:property-placeholder>
+<!--    配置连接源-->
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc-driver}"></property>
+        <property name="url" value="${jdbc-url}"></property>
+        <property name="username" value="${jdbc-username}"></property>
+        <property name="password" value="${jdbc-password}"></property>
+    </bean>
+    <bean name="SessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <bean name="" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="SessionFactory"></property>
+        <property name="basePackage" value="com.xud.dao"></property>
+    </bean>
+
+
+</beans>
