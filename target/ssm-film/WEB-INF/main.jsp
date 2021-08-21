@@ -10,14 +10,13 @@
        <tr>
            <c:forEach items="${voFilms}" var="film" begin="0" end="1">
                <td>
-<%--                  <a href="${pageContext.request.contextPath}/filmDetails?filmId=${film.filmId}">--%>
-              <a href="filmDetails?filmId=${film.filmId}">
-                      <img src="${pageContext.request.contextPath}${film.imgPath}"width="100px">
-                  </a>
-                   <p style="align-content: center">${film.filmName}</p>
-               </td>
-           </c:forEach>
-       </tr>
+                  <a href="filmDetails?filmId=${film.filmId}">
+                          <img src="${pageContext.request.contextPath}${film.imgPath}"width="100px">
+                      </a>
+                       <p style="align-content: center">${film.filmName}</p>
+                   </td>
+               </c:forEach>
+           </tr>
     </table>
 </body>
 </html>
