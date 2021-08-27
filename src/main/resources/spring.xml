@@ -19,6 +19,7 @@ https://www.springframework.org/schema/beans/spring-beans.xsd
     <bean name="SessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis.xml"></property>
         <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
     <bean name="" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="SessionFactory"></property>

@@ -6,17 +6,27 @@
     <title>Title</title>
 </head>
 <body>
-    <table>
-       <tr>
-           <c:forEach items="${voFilms}" var="film" begin="0" end="1">
-               <td>
-                  <a href="filmDetails?filmId=${film.filmId}">
-                          <img src="${pageContext.request.contextPath}${film.imgPath}"width="100px">
-                      </a>
-                       <p style="align-content: center">${film.filmName}</p>
-                   </td>
-               </c:forEach>
-           </tr>
-    </table>
+        <table align="center">
+            <tr>
+                <c:forEach items="${voFilms}" var="film" begin="0" end="2">
+                    <td align="center">
+                        <a href="filmDetails?filmId=${film.filmId}">
+                            <img src="${pageContext.request.contextPath}${film.imgPath}"width="250px" height="350">
+                        </a>
+                        <p>${film.filmName}</p>
+                    </td>
+                </c:forEach>
+            </tr>
+            <tr>
+                <c:forEach items="${voFilms}" var="film" begin="3" end="5">
+                    <td  align="center">
+                        <a href="filmDetails?filmId=${film.filmId}">
+                            <img src="${pageContext.request.contextPath}${film.imgPath}"width="250px" height="350">
+                        </a>
+                        <p >${film.filmName}</p>
+                    </td>
+                </c:forEach>
+            </tr>
+        </table>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xud.dao.PlayMapper">
+  <resultMap id="BaseResultMap" type="com.xud.domain.Play">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="film_id" jdbcType="VARCHAR" property="filmId" />
+    <result column="cinema_id" jdbcType="VARCHAR" property="cinemaId" />
+    <result column="play_time" jdbcType="TIMESTAMP" property="playTime" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="seat_info" jdbcType="VARCHAR" property="seatInfo" />
+    <result column="film_name" jdbcType="VARCHAR" property="filmName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from play
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xud.domain.Play">
+    insert into play (id, play_id, film_id, 
+      cinema_id, play_time, `language`,
+      room_id, price, seat_info, 
+      film_name)
+    values (#{id,jdbcType=BIGINT}, #{playId,jdbcType=VARCHAR}, #{filmId,jdbcType=VARCHAR}, 
+      #{cinemaId,jdbcType=VARCHAR}, #{playTime,jdbcType=TIMESTAMP}, #{language,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{seatInfo,jdbcType=VARCHAR}, 
+      #{filmName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.xud.domain.Play">
+    update play
+    set play_id = #{playId,jdbcType=VARCHAR},
+      film_id = #{filmId,jdbcType=VARCHAR},
+      cinema_id = #{cinemaId,jdbcType=VARCHAR},
+      play_time = #{playTime,jdbcType=TIMESTAMP},
+      `language` = #{language,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      seat_info = #{seatInfo,jdbcType=VARCHAR},
+      film_name = #{filmName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, play_id, film_id, cinema_id, play_time, `language`, room_id, price, seat_info,
+    film_name
+    from play
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, play_id, film_id, cinema_id, play_time, `language`, room_id, price, seat_info,
+    film_name
+    from play  where film_id=#{filmId}
+  </select>
+  <select id="getPlayByPlayId" resultMap="BaseResultMap">
+  select id, play_id, film_id, cinema_id, play_time, `language`, room_id, price, seat_info,
+  film_name
+  from play  where play_id=#{playId}
+  </select>
+  <select id="getSeatInfo" resultType="java.lang.String">
+    select  seat_info from play  where play_id=#{playId}
+  </select>
+</mapper>

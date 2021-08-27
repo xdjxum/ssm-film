@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xud.dao.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.xud.domain.Room">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="cinema_id" jdbcType="VARCHAR" property="cinemaId" />
+    <result column="seat_info" jdbcType="VARCHAR" property="seatInfo" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from room
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xud.domain.Room">
+    insert into room (id, room_id, cinema_id, 
+      seat_info, room_name)
+    values (#{id,jdbcType=BIGINT}, #{roomId,jdbcType=VARCHAR}, #{cinemaId,jdbcType=VARCHAR}, 
+      #{seatInfo,jdbcType=VARCHAR}, #{roomName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.xud.domain.Room">
+    update room
+    set room_id = #{roomId,jdbcType=VARCHAR},
+      cinema_id = #{cinemaId,jdbcType=VARCHAR},
+      seat_info = #{seatInfo,jdbcType=VARCHAR},
+      room_name = #{roomName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, room_id, cinema_id, seat_info, room_name
+    from room
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, room_id, cinema_id, seat_info, room_name
+    from room
+  </select>
+  <select id="selectByRoomId" resultType="com.xud.domain.Room" resultMap="BaseResultMap">
+    SELECT id,room_id,cinema_id,seat_info,room_name FROM ROOM WHERE ROOM_ID=#{roomId}
+  </select>
+</mapper>

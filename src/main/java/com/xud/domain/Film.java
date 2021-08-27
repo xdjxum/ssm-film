@@ -1,7 +1,7 @@
 package com.xud.domain;
 
 import java.sql.Date;
-
+//影片对象
 public class Film {
     private long id;//主键id
     private String film_id;//影片唯一id

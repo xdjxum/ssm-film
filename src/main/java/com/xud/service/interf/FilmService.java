@@ -12,6 +12,7 @@ import java.util.List;
 public class FilmService implements com.xud.service.FilmService {
     @Autowired
     private FilmDao filmDao;
+//    查询所有影片
     @Override
     public List<Film> selectFilmAll() {
         List<com.xud.domain.Film> doFilms=filmDao.selectFilmAll();
@@ -22,9 +23,10 @@ public class FilmService implements com.xud.service.FilmService {
         }
         return voFilms;
     }
+    //查询影片详细信息
+    @Override
     public FilmDetailsVo filmDetails(String filmId){
         com.xud.domain.Film doFilm =filmDao.getFilmByID(filmId);
-        System.out.println(doFilm);
         FilmDetailsVo filmDetailsVo=new FilmDetailsVo(doFilm.getFilm_id(),doFilm.getFilm_name(),doFilm.getImg_path(),doFilm.getDriector(),
                 doFilm.getPlayer(),doFilm.getFilm_type(),doFilm.getCountry(),doFilm.getLength(),doFilm.getSynopsis(),doFilm.getPlay_time());
         return filmDetailsVo;

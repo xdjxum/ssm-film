@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xud.dao.CinemaMapper">
+  <resultMap id="BaseResultMap" type="com.xud.domain.Cinema">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cinem_id" jdbcType="VARCHAR" property="cinemId" />
+    <result column="cinema_name" jdbcType="VARCHAR" property="cinemaName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cinema
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xud.domain.Cinema">
+    insert into cinema (id, cinem_id, cinema_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{cinemId,jdbcType=VARCHAR}, #{cinemaName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.xud.domain.Cinema">
+    update cinema
+    set cinem_id = #{cinemId,jdbcType=VARCHAR},
+      cinema_name = #{cinemaName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, cinem_id, cinema_name
+    from cinema
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, cinem_id, cinema_name
+    from cinema
+  </select>
+  <select id="selectByCinemaId" resultType="com.xud.domain.Cinema" resultMap="BaseResultMap">
+    select id,cinem_id,cinema_name from cinema where cinem_id=#{cinemaId}
+  </select>
+</mapper>
