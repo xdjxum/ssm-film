@@ -77,4 +77,7 @@ public class PlayService implements com.xud.service.PlayService {
       String seatInfo=playMapper.getSeatInfo(playId);
        return seatInfo;
     }
+    public int setSeatInit(String seat,String playId){
+        return playMapper.updateSeat(seat,playId);
+    }
 }

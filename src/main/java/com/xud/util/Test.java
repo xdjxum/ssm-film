@@ -1,3 +1,5 @@
+package com.xud.util;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -22,20 +24,22 @@ public class Test {
 //        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
 //        }
-        try {
-            List<String> warnings = new ArrayList<String>();
-            boolean overwrite = true;
-
-            File configFile = new File("mybatis/generatorConfig.xml");
-
-            ConfigurationParser cp = new ConfigurationParser(warnings);
-            Configuration config = cp.parseConfiguration(configFile);
-            DefaultShellCallback callback = new DefaultShellCallback(overwrite);
-            // 创建生成器
-            MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
-            myBatisGenerator.generate(null);
-        }catch (Exception e){
-
-        }
+        //---------------------------------------------------------------
+//        try {
+//            List<String> warnings = new ArrayList<String>();
+//            boolean overwrite = true;
+//
+//            File configFile = new File("mybatis/generatorConfig.xml");
+//
+//            ConfigurationParser cp = new ConfigurationParser(warnings);
+//            Configuration config = cp.parseConfiguration(configFile);
+//            DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+//            // 创建生成器
+//            MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+//            myBatisGenerator.generate(null);
+//        }catch (Exception e){
+//
+//        }
+        //______________________________________
     }
 }

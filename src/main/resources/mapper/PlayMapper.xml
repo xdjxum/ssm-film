@@ -27,18 +27,10 @@
       #{roomId,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{seatInfo,jdbcType=VARCHAR}, 
       #{filmName,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.xud.domain.Play">
+  <update id="updateSeat" parameterType="java.lang.String">
     update play
-    set play_id = #{playId,jdbcType=VARCHAR},
-      film_id = #{filmId,jdbcType=VARCHAR},
-      cinema_id = #{cinemaId,jdbcType=VARCHAR},
-      play_time = #{playTime,jdbcType=TIMESTAMP},
-      `language` = #{language,jdbcType=VARCHAR},
-      room_id = #{roomId,jdbcType=VARCHAR},
-      price = #{price,jdbcType=REAL},
-      seat_info = #{seatInfo,jdbcType=VARCHAR},
-      film_name = #{filmName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
+    set seat_info = #{seat}
+    where play_id = #{playId}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select id, play_id, film_id, cinema_id, play_time, `language`, room_id, price, seat_info,

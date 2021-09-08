@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<body>
+<body bgcolor="#2f4f4f">
     <table class="layui-table">
         <tr>
             <th>放映时间</th>

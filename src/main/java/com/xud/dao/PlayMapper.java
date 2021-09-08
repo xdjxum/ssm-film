@@ -1,6 +1,8 @@
 package com.xud.dao;
 
 import com.xud.domain.Play;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface PlayMapper {
@@ -12,7 +14,7 @@ public interface PlayMapper {
 
     List<Play> selectAll(String filmId);
 
-    int updateByPrimaryKey(Play record);
+    int updateSeat(@Param("seat") String seat, @Param("playId") String playId);
 
     Play getPlayByPlayId(String playId);
     String getSeatInfo(String playId);

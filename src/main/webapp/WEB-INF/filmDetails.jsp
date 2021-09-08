@@ -15,7 +15,7 @@
 
     </script>
 </head>
-    <body>
+    <body bgcolor="#2f4f4f">
         <div style="margin: 10px"  >
             <img src="${pageContext.request.contextPath}${filmDetails.imgPath}" width="250px" height="400">
 

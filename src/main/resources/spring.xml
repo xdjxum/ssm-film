@@ -1,10 +1,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:contex="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 https://www.springframework.org/schema/beans/spring-beans.xsd
  http://www.springframework.org/schema/context
- https://www.springframework.org/schema/context/spring-context.xsd"
+ https://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/tx
+ https://www.springframework.org/schema/tx/spring-tx.xsd"
        default-lazy-init="true">
     <contex:component-scan base-package="com.xud.controller,com.xud.dao,com.xud.service,com.xud.domain"></contex:component-scan>
 <!--        引入外部文件-->
@@ -21,10 +24,13 @@ https://www.springframework.org/schema/beans/spring-beans.xsd
         <property name="dataSource" ref="dataSource"></property>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
-    <bean name="" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean name="mapper" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="SessionFactory"></property>
         <property name="basePackage" value="com.xud.dao"></property>
     </bean>
-
+    <bean name="manager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <tx:annotation-driven transaction-manager="manager"></tx:annotation-driven>
 
 </beans>

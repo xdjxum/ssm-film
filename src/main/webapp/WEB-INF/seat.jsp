@@ -41,7 +41,7 @@
             }
         </style>
     </head>
-    <body onload="x()" text-align:center>
+    <body onload="x()" text-align:center bgcolor="#2f4f4f">
    <span> 可选座位：</span><button class='layui-btn layui-btn-primary' style='width: 100px;height: 22px;line-height: 22px;margin-top: 10px;cursor: not-allowed'>1</button>
     <span>已选座位：</span><button  class='layui-btn layui-btn-warm' style='width: 100px;height: 22px;line-height: 22px;margin-top: 10px;cursor: not-allowed'>1</button><br>
    <span> 他人座位：</span><button   class='layui-btn layui-btn-danger' style='width: 100px;height: 22px;line-height: 22px;cursor: not-allowed'>1</button>
@@ -88,7 +88,7 @@
             </tr>
             <tr>
                 <th>选择购票</th>
-                <td><a href="" style="color: #01AAED">购票</a></td>
+                <td><a onclick="buyTickts()" style="color: #01AAED;cursor: pointer;">购票</a></td>
             </tr>
         </table>
     </body>
@@ -154,6 +154,7 @@
                                 date[i][j]=1;
                             }else {
                                 money=money-1;
+                                str1[i][j]=0;
                                 $('#money').empty();
                                 $('#money').append(money*price);
                                 $("#"+i+j+"").remove();
@@ -166,6 +167,37 @@
                 x();
             },'json')
         }
-        setInterval('wheeLing()',9000)
+        setInterval('wheeLing()',3000)
+
+        //购票
+        function buyTickts() {
+            var seat="";
+            for (var i in str1){
+                for (var j in str1[i]){
+                    if (str1[i][j]==1){
+                        seat=seat+i+','+j+';'
+                    }
+                }
+            }
+            var temp = document.createElement("form");
+            temp.action ="insertForder";
+            temp.method = "post";
+            temp.style.display = "none";
+            var t= document.createElement("textarea");
+            t.name ="seat";
+            t.value =seat;
+            temp.appendChild(t);
+            var o = document.createElement("textarea");
+            o.name ="price";
+            o.value =${voSert.price};
+            temp.appendChild(o);
+            var p = document.createElement("textarea");
+            p.name ="playId";
+            p.value ="${voSert.playId}";
+            temp.appendChild(p);
+            document.body.appendChild(temp);
+            temp.submit();
+            return temp;
+        }
     </script>
 </html>

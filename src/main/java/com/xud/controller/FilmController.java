@@ -17,9 +17,9 @@ public class FilmController {
     private FilmService filmService;
     //获取所有影片信息
     @RequestMapping("/select")
-    public @ResponseBody ModelAndView selectFilmAll(){
+    public @ResponseBody ModelAndView selectFilmAll(String film_name){
         ModelAndView modelAndView=new ModelAndView();
-        List<Film>voFilms =filmService.selectFilmAll();
+        List<Film>voFilms =filmService.selectFilmAll(film_name);
         modelAndView.addObject("voFilms",voFilms);
         modelAndView.setViewName("main");
         return modelAndView;
@@ -31,6 +31,13 @@ public class FilmController {
         FilmDetailsVo filmDetails =filmService.filmDetails(filmId);
         modelAndView.addObject("filmDetails",filmDetails);
         modelAndView.setViewName("/filmDetails");
+        return modelAndView;
+    }//后台管理展示影片信息
+    @RequestMapping("/backtageFilm")
+    public ModelAndView backtageFilmAll(String film_name){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.addObject("films",filmService.backtageFilmAll(film_name));
+        modelAndView.setViewName("backtageFilm");
         return modelAndView;
     }
 }
